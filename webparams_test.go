@@ -34,3 +34,34 @@ func TestExtractInt64(t *testing.T) {
 		t.Fatalf("Error ExtractInt64 should return error on string with mixed alpha numeric values but it did not return an error")
 	}
 }
+
+func TestExtractFloat64(t *testing.T) {
+
+	floatval, err := ExtractFloat64("-0.00")
+
+	if err != nil {
+		t.Fatalf("Error ExtractFloat64 did not convert to float64 -0.00 : %s", err)
+	}
+
+	if floatval != -0.00 {
+		t.Fatalf("Error ExtractFloat64 did not return -0.00 it returned : %v", floatval)
+	}
+
+	floatval, err = ExtractFloat64("")
+
+	if err == nil {
+		t.Fatalf("Error ExtractFloat64 should return error on empty string but it did not return an error")
+	}
+
+	floatval, err = ExtractFloat64("3.14159260")
+
+	if err != nil {
+		t.Fatalf("Error ExtractFloat64 should not return error for pi, it returned: %s", err)
+	}
+
+	floatval, err = ExtractFloat64("abc123")
+
+	if err == nil {
+		t.Fatalf("Error ExtractFloat64 should return error on string with mixed alpha numeric values but it did not return an error")
+	}
+}

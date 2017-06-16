@@ -14,6 +14,13 @@ Plain example
 	// handle error
   }
 
+  floatval, err := webparams.ExtractFloat64("12345.000")
+
+  if err != nil {
+	// handle error
+  }
+
+
 Example in a server using Gin framework with context variable named c
 
 
